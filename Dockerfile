@@ -36,6 +36,10 @@ RUN apt-get update && \
     netcat \
     # PPA req
     software-properties-common && \
+    # Userland apps
+    sudo add-apt-repository ppa:mozillateam/ppa && \
+    sudo apt-get install -y --no-install-recommends \
+    tint2 && \
     apt-get clean
 
 # Install noVNC
