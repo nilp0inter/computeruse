@@ -36,19 +36,6 @@ RUN apt-get update && \
     netcat \
     # PPA req
     software-properties-common && \
-    # Userland apps
-    sudo add-apt-repository ppa:mozillateam/ppa && \
-    sudo apt-get install -y --no-install-recommends \
-    libreoffice \
-    firefox-esr \
-    x11-apps \
-    xpdf \
-    gedit \
-    xpaint \
-    tint2 \
-    galculator \
-    pcmanfm \
-    unzip && \
     apt-get clean
 
 # Install noVNC
