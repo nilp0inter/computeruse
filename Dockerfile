@@ -34,8 +34,17 @@ RUN apt-get update && \
     # Network tools
     net-tools \
     netcat \
+    # Caddy web server
+    debian-keyring \
+    debian-archive-keyring \
+    apt-transport-https \
     # PPA req
     software-properties-common && \
+    # Install Caddy
+    curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg && \
+    curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list && \
+    sudo apt-get update && \
+    sudo apt-get install -y caddy && \
     # Userland apps
     sudo add-apt-repository ppa:mozillateam/ppa && \
     sudo apt-get install -y --no-install-recommends \

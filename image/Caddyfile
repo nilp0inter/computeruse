@@ -1,0 +1,28 @@
+:7860 {
+	# Serve static content from root
+	root * /home/computeruse/static_content
+	file_server
+
+	# Reverse proxy for Streamlit
+	handle_path /streamlit/* {
+		reverse_proxy 127.0.0.1:8501
+	}
+
+	# Reverse proxy for noVNC
+	handle_path /vnc/* {
+		reverse_proxy 127.0.0.1:6080
+	}
+
+	# WebSocket support for noVNC
+	@websocket {
+		header Connection *Upgrade*
+		header Upgrade websocket
+	}
+	reverse_proxy @websocket 127.0.0.1:6080
+
+	# Enable logs for debugging
+	log {
+		output stdout
+		level INFO
+	}
+}
